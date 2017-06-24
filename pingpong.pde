@@ -2,11 +2,14 @@ void setup ( ) {
   size(500, 500);
   background(0);
 }
-
+int rgb = 0;
+int rr = 255;
+int gg = 255;
+int bb = 255;
 float a = random(3,4);
-float b = random(3,4);
-float v = 20;
-float w = 20;
+float b = random(0,4);
+float v = 100;
+float w = 250;
 float y=200;
 float x=200;
 int keyStat;
@@ -57,7 +60,7 @@ void draw( ) {
   fill(255,255,255);
   rect(440,x,10,100);
   
-  fill(255,255,255);
+  fill(rr,gg,bb);
   ellipse(v,w,10,10);
   
   if((keyStat&0x1)!=0 && x >0){
@@ -81,11 +84,34 @@ void draw( ) {
   }
   if((v >= 440) && (x <= w) && (w <= (x+100))){
     a=a*-1;
+    b = random(-4,4);
+    rgb++;
   }
   if((v <= 60) && (y <= w) && (w <= (y+100))){
     a=a*-1;
+    b = random(-4,4);
+    rgb++;
   }
   
   v=v+a;
   w=w+b;
+  switch(rgb%4){
+    case 0:
+    rr=255;
+    gg=255;
+    bb=255;
+    break;
+    case 1:
+    rr=255;
+    gg=bb=0;
+    break;
+    case 2:
+    gg=255;
+    rr=bb=0;
+    break;
+    case 3:
+    bb=255;
+    rr=gg=0;
+    break;
+  }
 }
